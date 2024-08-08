@@ -21,10 +21,8 @@ exports.register=async(req,res)=>{
         }
     }
     catch(err){
-        console.log(err);
-        
+        console.log(err);    
     }
-
 }
 
 exports.login=async(req,res)=>{
@@ -35,13 +33,8 @@ exports.login=async(req,res)=>{
     try{
         const existingUser = await user.findOne({email,passaword})
         if(existingUser){
-            console.log(existingUser);
-            
-            
             const token=jwt.sign({email:existingUser.email,username:existingUser.username,userId:existingUser._id},process.env.secrect_key)
             const rest={token,userId:existingUser._id,userDetails:existingUser}
-            console.log(token);
-            
             res.status(200).json(rest)
         }
         else{

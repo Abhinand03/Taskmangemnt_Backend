@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken')
 
 const jwtFunction = (req, res, next) => {
-     console.log("inside jwt");
-
     try {
     const token = req.headers.authorization.split(' ')[1]
         if (token) {

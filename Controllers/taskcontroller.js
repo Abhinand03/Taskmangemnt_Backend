@@ -17,16 +17,15 @@ exports.add=async(req,res)=>{
     }
 
 }
+
+
 exports.getTask= async(req,res)=>{
     const {userId}=req.params
     const user=JSON.parse(userId)
-
     const query = { userId:user.userId  };
-
     if (user.search) {
         query.message = { $regex: user.search, $options: 'i' }; 
     }
-    console.log(query)
     try{
 
         const result = await task.find(query)
@@ -37,6 +36,7 @@ exports.getTask= async(req,res)=>{
         
     }
 }
+
 
 exports.edittask=async(req,res)=>{
     const {task_id,heading,message,status,deadline}=req.body
@@ -53,6 +53,8 @@ exports.edittask=async(req,res)=>{
 
 
 }
+
+
 exports.delttask=async(req,res)=>{
     const {task_id}=req.params
     
